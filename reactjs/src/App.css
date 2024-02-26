@@ -1,0 +1,26 @@
+
+.App, .App_title, .App_container, .container-save-btn{
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+}
+#create-employee{
+  width: 100%;
+  /* border:2px solid white; */
+}
+.address{
+  border:0.3px solid var(--bs-body-color);
+  padding:10px;
+}
+.address-legend{
+ all:initial;
+ font-family: inherit;
+ color:inherit;
+ font-size: 1.5rem;
+ padding:10px;
+}
+
+
+
+
