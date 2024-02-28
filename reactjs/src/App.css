@@ -1,5 +1,5 @@
 
-.App, .App_title, .App_container, .container-save-btn{
+.App, .App_title, .App_container, .container-btn{
   display: flex;
   align-items: center;
   justify-content: start;
@@ -21,6 +21,35 @@
  padding:10px;
 }
 
+.datepicker{
+  /* width: 100%; */
+  border:none;
+  outline: none;
+}
+
+.Modal{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right :-50%;
+  transform: translate(-50%, -50%);
+  height: max-content;
+  width: max-content;
+  padding:50px;
+  background-color: var(--bs-body-bg);
+  border-radius: var(--bs-border-radius);
+}
 
 
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color:rgba(0, 0, 0, 0.7);
+}
 

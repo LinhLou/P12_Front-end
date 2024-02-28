@@ -1,7 +1,38 @@
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import Select from "react-dropdown-select";
+import countryList from "./data/countries";
+import Modal from 'react-modal';
+
+import "react-datepicker/dist/react-datepicker.css";
 import "bootswatch/dist/darkly/bootstrap.min.css";
 import './App.css';
 
+Modal.setAppElement("#root");
+
 function App() {
+
+  const [startDate, setStartDate] = useState(new Date());
+  const [birthday, setBirthday] = useState(new Date());
+  const [departement, setDepartement] = useState('Sales');
+  const [country, setCountry] = useState('Afghanistan');
+  const departements = [{ id: 1, name: 'Sales' }, { id: 2, name: 'Marketing' }, { id: 3, name: 'Engineering' }, { id: 4, name: 'Humain Resoureces' }, { id: 5, name: 'Legal' }];
+
+  //  modal 
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const openModal = () => {
+    setIsOpen(true);
+  };
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+  //  
+  const handleSaveBtn = (e) => {
+    e.preventDefault();
+    openModal();
+  };
+
+
   return (
     <div className="App">
       <div className="App_title mt-4">
@@ -21,11 +52,15 @@ function App() {
           </div>
           <div className="form-group">
             <label forhtml="date-of-birth" className="form-label mt-4">Date of Birth</label>
-            <input type="text" className="form-control" id="date-of-birth" placeholder="Enter your date of birth" />
+            <div className="form-control">
+              <DatePicker id="date-of-birth" className="datepicker" selected={birthday} onChange={(date) => setBirthday(date)} />
+            </div>
           </div>
           <div className="form-group">
             <label forhtml="start-date" className="form-label mt-4">Start Date</label>
-            <input type="text" className="form-control" id="start-date" placeholder="Enter the start date" />
+            <div className="form-control">
+              <DatePicker id="start-date" className="datepicker" selected={startDate} onChange={(date) => setStartDate(date)} />
+            </div>
           </div>
           <div className="form-group">
             <fieldset className="address mt-4" >
@@ -40,7 +75,9 @@ function App() {
               </div>
               <div className="form-group">
                 <label forhtml="state" className="form-label mt-4">State</label>
-                <input type="text" className="form-control" id="state" />
+                <div className="form-control">
+                  <Select options={countryList} id="state" labelField="country" valueField="id" onChange={(country) => setCountry(country)} />
+                </div>
               </div>
               <div className="form-group">
                 <label forhtml="zip-code" className="form-label mt-4">Zip code</label>
@@ -50,14 +87,27 @@ function App() {
           </div>
           <div className="form-group">
             <label forhtml="department" className="form-label mt-4">Department</label>
-            <input type="number" className="form-control" id="department" />
+            <div className="form-control">
+              <Select options={departements} id="department" labelField="name" valueField="id" onChange={(departement) => setDepartement(departement)} />
+            </div>
           </div>
-          <div className="form-group mt-4 container-save-btn">
-            <button type="submit" className="btn btn-primary">Save</button>
+          <div className="form-group mt-4 container-btn">
+            <button type="submit" className="btn btn-primary" onClick={(e) => handleSaveBtn(e)}>Save</button>
           </div>
         </form>
       </div>
-      <div id="confirmation" className="modal">Employee Created!</div>
+
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        className="Modal"
+        overlayClassName="Overlay"
+      >
+        <div className="form-group mt-4 container-btn">
+          <h2 className="">Employée created!</h2>
+          <button className="btn btn-primary mt-4" onClick={closeModal}>Close</button>
+        </div>
+      </Modal>
     </div>
   );
 }
