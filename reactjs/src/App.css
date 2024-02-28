@@ -7,7 +7,6 @@
 }
 #create-employee{
   width: 100%;
-  /* border:2px solid white; */
 }
 .address{
   border:0.3px solid var(--bs-body-color);
@@ -22,7 +21,6 @@
 }
 
 .datepicker{
-  /* width: 100%; */
   border:none;
   outline: none;
 }
@@ -52,4 +50,10 @@
   bottom: 0;
   background-color:rgba(0, 0, 0, 0.7);
 }
+
+.container-table{
+  min-width: 50%;
+}
+
+
 

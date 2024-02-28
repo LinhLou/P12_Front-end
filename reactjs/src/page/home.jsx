@@ -1,16 +1,14 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import Select from "react-dropdown-select";
-import countryList from "./data/countries";
+import countryList from "../data/countries";
 import Modal from 'react-modal';
 
-import "react-datepicker/dist/react-datepicker.css";
-import "bootswatch/dist/darkly/bootstrap.min.css";
-import './App.css';
 
 Modal.setAppElement("#root");
 
-function App() {
+function Home() {
 
   const [startDate, setStartDate] = useState(new Date());
   const [birthday, setBirthday] = useState(new Date());
@@ -39,7 +37,7 @@ function App() {
         <h1>HRnet</h1>
       </div>
       <div className="App_container mt-4">
-        <a href="employee-list.html">View Current Employees</a>
+        <Link to="/employees">View Current Employees</Link>
         <h2 className='mt-4'>Create Employee</h2>
         <form action="#" id="create-employee">
           <div className="form-group">
@@ -112,4 +110,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
