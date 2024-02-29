@@ -1,17 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import Select from "react-dropdown-select";
 import countryList from "../data/countries";
 import Modal from 'react-modal';
-
+import { createEmployee } from "../Redux/employeeSlice";
+import { useDispatch } from "react-redux";
 
 Modal.setAppElement("#root");
 
 function Home() {
+  const dispatch = useDispatch();
+  const firstNameRef = useRef();
+  const lastNameRef = useRef();
+  const streetRef = useRef();
+  const cityRef = useRef();
+  const zipCodeRef = useRef();
 
-  const [startDate, setStartDate] = useState(new Date());
-  const [birthday, setBirthday] = useState(new Date());
+  const [startDate, setStartDate] = useState();
+  const [birthday, setBirthday] = useState();
   const [departement, setDepartement] = useState('Sales');
   const [country, setCountry] = useState('Afghanistan');
   const departements = [{ id: 1, name: 'Sales' }, { id: 2, name: 'Marketing' }, { id: 3, name: 'Engineering' }, { id: 4, name: 'Humain Resoureces' }, { id: 5, name: 'Legal' }];
@@ -24,9 +31,22 @@ function Home() {
   const closeModal = () => {
     setIsOpen(false);
   };
+
   //  
   const handleSaveBtn = (e) => {
     e.preventDefault();
+    const employee = {
+      firstName:firstNameRef.current.value,
+      lastName:lastNameRef.current.value,
+      startDate:startDate ? startDate.toLocaleDateString('en-US'):'',
+      birdthDate: birthday? birthday.toLocaleDateString('en-US'):'',
+      departement: departement[0].name ? departement[0].name : '',
+      state: country[0].country ? country[0].country: '',
+      street: streetRef.current.value,
+      city: cityRef.current.value,
+      zipCode: zipCodeRef.current.value
+    }
+    dispatch(createEmployee(employee));
     openModal();
   };
 
@@ -42,11 +62,11 @@ function Home() {
         <form action="#" id="create-employee">
           <div className="form-group">
             <label forhtml="first-name" className="form-label mt-4">First Name</label>
-            <input type="text" className="form-control" id="first-name" placeholder="Enter your first name" />
+            <input type="text" ref={firstNameRef} className="form-control" id="first-name" placeholder="Enter your first name" />
           </div>
           <div className="form-group">
             <label forhtml="last-name" className="form-label mt-4">Last Name</label>
-            <input type="text" className="form-control" id="last-name" placeholder="Enter your last name" />
+            <input type="text" ref={lastNameRef} className="form-control" id="last-name" placeholder="Enter your last name" />
           </div>
           <div className="form-group">
             <label forhtml="date-of-birth" className="form-label mt-4">Date of Birth</label>
@@ -65,11 +85,11 @@ function Home() {
               <legend className="address-legend">Address</legend>
               <div className="form-group">
                 <label forhtml="street" className="form-label mt-2">Street</label>
-                <input type="text" className="form-control" id="street" />
+                <input type="text" ref={streetRef} className="form-control" id="street" />
               </div>
               <div className="form-group">
                 <label forhtml="city" className="form-label mt-4">City</label>
-                <input type="text" className="form-control" id="city" />
+                <input type="text" ref={cityRef} className="form-control" id="city" />
               </div>
               <div className="form-group">
                 <label forhtml="state" className="form-label mt-4">State</label>
@@ -79,7 +99,7 @@ function Home() {
               </div>
               <div className="form-group">
                 <label forhtml="zip-code" className="form-label mt-4">Zip code</label>
-                <input type="number" className="form-control" id="zip-code" />
+                <input type="number" ref={zipCodeRef} className="form-control" id="zip-code" />
               </div>
             </fieldset>
           </div>

@@ -46,7 +46,7 @@ const columns = [
 	}
 ];
 
-const employees = [
+const employees_mockup = [
   {
     id: 1,
     firstName: 'Dang',
@@ -86,4 +86,4 @@ const employees = [
 ]
 
 
-export {columns, employees}
+export {columns, employees_mockup}

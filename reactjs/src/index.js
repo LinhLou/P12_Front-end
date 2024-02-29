@@ -5,10 +5,14 @@ import "bootswatch/dist/darkly/bootstrap.min.css";
 import './App.css';
 import { RouterProvider } from "react-router-dom";
 import router from "./App/routes";
+import store from './Redux/store';
+import { Provider } from 'react-redux';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
