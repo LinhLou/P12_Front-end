@@ -5,7 +5,7 @@ import Select from "react-dropdown-select";
 import countryList from "../data/countries";
 import Modal from 'react-modal';
 import { createEmployee } from "../Redux/employeeSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 Modal.setAppElement("#root");
 

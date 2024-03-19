@@ -40,8 +40,6 @@
   border-radius: var(--bs-border-radius);
 }
 
-
-
 .Overlay {
   position: fixed;
   top: 0;
@@ -51,8 +49,11 @@
   background-color:rgba(0, 0, 0, 0.7);
 }
 
-.container-table{
-  min-width: 50%;
+
+
+/* table */
+.table_filter_ct, .table_contenu_table_ct, .table_contenu__tbody__tr_ct{
+  all: unset;
 }
 
 
