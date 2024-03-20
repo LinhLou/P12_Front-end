@@ -5,7 +5,7 @@ import Select from "react-dropdown-select";
 import countryList from "../data/countries";
 import Modal from 'react-modal';
 import { createEmployee } from "../Redux/employeeSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 Modal.setAppElement("#root");
 
@@ -16,6 +16,8 @@ function Home() {
   const streetRef = useRef();
   const cityRef = useRef();
   const zipCodeRef = useRef();
+  const startDateRef = useRef();
+  const birthDateRef = useRef();
 
   const [startDate, setStartDate] = useState();
   const [birthday, setBirthday] = useState();
@@ -50,6 +52,13 @@ function Home() {
     openModal();
   };
 
+  const onClickStartDate =  ()=>{
+    startDateRef.current.input.focus();
+  }
+  const onClickBirthDateDate =  ()=>{
+    birthDateRef.current.input.focus();
+  }
+
 
   return (
     <div className="App">
@@ -68,16 +77,16 @@ function Home() {
             <label forhtml="last-name" className="form-label mt-4">Last Name</label>
             <input type="text" ref={lastNameRef} className="form-control" id="last-name" placeholder="Enter your last name" />
           </div>
-          <div className="form-group">
+          <div className="form-group" onClick={onClickBirthDateDate}>
             <label forhtml="date-of-birth" className="form-label mt-4">Date of Birth</label>
             <div className="form-control">
-              <DatePicker id="date-of-birth" className="datepicker" selected={birthday} onChange={(date) => setBirthday(date)} />
+              <DatePicker ref={birthDateRef} id="date-of-birth" className="datepicker" selected={birthday} onChange={(date) => setBirthday(date)} />
             </div>
           </div>
-          <div className="form-group">
+          <div className="form-group" onClick={onClickStartDate}>
             <label forhtml="start-date" className="form-label mt-4">Start Date</label>
-            <div className="form-control">
-              <DatePicker id="start-date" className="datepicker" selected={startDate} onChange={(date) => setStartDate(date)} />
+            <div className="form-control" >
+              <DatePicker ref={startDateRef} id="start-date" className="datepicker" selected={startDate} onChange={(date) => setStartDate(date)} />
             </div>
           </div>
           <div className="form-group">

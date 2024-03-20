@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { DataTable } from 'react-data-table-ll-08';
+import { DataTable } from 'react-data-table-ll-09';
 import store from '../Redux/store';
 
 const formatedData = (data)=>{
@@ -29,15 +29,21 @@ const formatedData = (data)=>{
         sortable:true
       },
       {
+        name:'Date of Birth',
+        value:'birthDate',
+        type:'date',
+        sortable:true
+      },
+      {
         name:'Departement',
         value:'departement',
         type:'string',
         sortable:true
       },
       {
-        name:'Date of Birth',
-        value:'birthDate',
-        type:'date',
+        name:'State',
+        value:'state',
+        type:'string',
         sortable:true
       },
       {
@@ -53,12 +59,6 @@ const formatedData = (data)=>{
         sortable:true
       },
       {
-        name:'State',
-        value:'state',
-        type:'string',
-        sortable:true
-      },
-      {
         name:'Zip Code',
         value:'zipCode',
         type:'number',
@@ -68,35 +68,25 @@ const formatedData = (data)=>{
     rows:[]
   }
   formatedData=data.reduce((acc,ele)=>{
-    const newRows = {
-        firstName:ele.firstName,
-        lastName:ele.lastName,
-        startDate:ele.startDate,
-        birdthDate: ele.birdthDate,
-        departement:ele.departement,
-        state:ele.state,
-        street: ele.street,
-        city:ele.city,
-        zipCode:ele.zipCode
-      }
-    acc.rows.push(newRows);
+    acc.rows.push(ele);
     return acc
   },formatedData);
   return formatedData
 }
 
 const styleCustom = {
-  table_contenu__table: 'table_title_ct',
-  table_filter: 'form-control',
+  table_section:'table_section__ct',
+  table_filter: 'table_filter__ct',
   table_contenu__table:'table table-hover',
-  table_contenu__tbody__tr:'table-active',
-  table_contenu__thead__tr:'table-active',
+  table_contenu__tbody__tr:'table-dark table_contenu__tbody__tr__ct',
+  table_contenu__thead__tr:'table-dark',
 }
 
 export default function EmployeeList() {
   const state = store.getState();
   const employeesList = state.employee.employees;
   const data = formatedData(employeesList);
+  console.log(data)
   return (
     <div className="App">
       <h1 className='mt-4'>Current Employees</h1>

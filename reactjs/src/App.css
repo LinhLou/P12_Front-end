@@ -52,8 +52,11 @@
 
 
 /* table */
-.table_filter_ct, .table_contenu_table_ct, .table_contenu__tbody__tr_ct{
-  all: unset;
+.table_section__ct{
+  margin-top:50px;
+}
+.table_filter__ct{
+  background-color: var(--bs-body-color);
 }
 
 
