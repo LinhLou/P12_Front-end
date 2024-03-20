@@ -30,7 +30,7 @@ const formatedData = (data)=>{
       },
       {
         name:'Date of Birth',
-        value:'birthDate',
+        value:'birdthDate',
         type:'date',
         sortable:true
       },
@@ -68,7 +68,7 @@ const formatedData = (data)=>{
     rows:[]
   }
   formatedData=data.reduce((acc,ele)=>{
-    acc.rows.push(ele);
+    acc.rows.unshift(ele);
     return acc
   },formatedData);
   return formatedData
