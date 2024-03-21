@@ -4,7 +4,7 @@ import { DataTable } from 'react-data-table-ll-09';
 import store from '../Redux/store';
 
 const formatedData = (data)=>{
-  if(data.length==0){
+  if(data.length===0){
     const formatedData = { columns:[],rows:[]}
     return formatedData
   }
@@ -86,11 +86,10 @@ export default function EmployeeList() {
   const state = store.getState();
   const employeesList = state.employee.employees;
   const data = formatedData(employeesList);
-  console.log(data)
   return (
-    <div className="App">
+    <div className="App" data-testid='employeesListPage'>
       <h1 className='mt-4'>Current Employees</h1>
-      <DataTable
+      <DataTable 
         data={data}
         searchTbl
         pagination

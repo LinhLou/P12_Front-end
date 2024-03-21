@@ -1,5 +1,5 @@
-import Home from "../page/home";
-import EmployeeList from "../page/employee-list";
+import Home from "./page/home";
+import EmployeeList from "./page/employee-list";
 import {
   createBrowserRouter,
   createRoutesFromElements,

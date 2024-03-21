@@ -7,8 +7,6 @@ import Modal from 'react-modal';
 import { createEmployee } from "../Redux/employeeSlice";
 import { useDispatch } from "react-redux";
 
-Modal.setAppElement("#root");
-
 function Home() {
   const dispatch = useDispatch();
   const firstNameRef = useRef();
@@ -26,6 +24,8 @@ function Home() {
   const departements = [{ id: 1, name: 'Sales' }, { id: 2, name: 'Marketing' }, { id: 3, name: 'Engineering' }, { id: 4, name: 'Humain Resoureces' }, { id: 5, name: 'Legal' }];
 
   //  modal 
+  const modalContainer = document.createElement('div');
+  Modal.setAppElement(modalContainer);
   const [modalIsOpen, setIsOpen] = useState(false);
   const openModal = () => {
     setIsOpen(true);
@@ -62,13 +62,13 @@ function Home() {
 
   return (
     <div className="App">
-      <div className="App_title mt-4">
+      <div className="App_title mt-4" data-testid='homePage'>
         <h1>HRnet</h1>
       </div>
       <div className="App_container mt-4">
         <Link to="/employees">View Current Employees</Link>
         <h2 className='mt-4'>Create Employee</h2>
-        <form action="#" id="create-employee">
+        <form action="#" id="create-employee" data-testid='form'>
           <div className="form-group">
             <label forhtml="first-name" className="form-label mt-4">First Name</label>
             <input type="text" ref={firstNameRef} className="form-control" id="first-name" placeholder="Enter your first name" />
@@ -79,13 +79,13 @@ function Home() {
           </div>
           <div className="form-group" onClick={onClickBirthDateDate}>
             <label forhtml="date-of-birth" className="form-label mt-4">Date of Birth</label>
-            <div className="form-control">
+            <div className="form-control" data-testid = 'date-of-birth'>
               <DatePicker ref={birthDateRef} id="date-of-birth" className="datepicker" selected={birthday} onChange={(date) => setBirthday(date)} />
             </div>
           </div>
           <div className="form-group" onClick={onClickStartDate}>
             <label forhtml="start-date" className="form-label mt-4">Start Date</label>
-            <div className="form-control" >
+            <div className="form-control" data-testid = 'start-date'>
               <DatePicker ref={startDateRef} id="start-date" className="datepicker" selected={startDate} onChange={(date) => setStartDate(date)} />
             </div>
           </div>
@@ -102,7 +102,7 @@ function Home() {
               </div>
               <div className="form-group">
                 <label forhtml="state" className="form-label mt-4">State</label>
-                <div className="form-control">
+                <div className="form-control" data-testid="select-menu-state">
                   <Select options={countryList} id="state" labelField="country" valueField="id" onChange={(country) => setCountry(country)} />
                 </div>
               </div>
@@ -114,12 +114,12 @@ function Home() {
           </div>
           <div className="form-group">
             <label forhtml="department" className="form-label mt-4">Department</label>
-            <div className="form-control">
+            <div className="form-control" data-testid="select-menu-departement">
               <Select options={departements} id="department" labelField="name" valueField="id" onChange={(departement) => setDepartement(departement)} />
             </div>
           </div>
           <div className="form-group mt-4 container-btn">
-            <button type="submit" className="btn btn-primary" onClick={(e) => handleSaveBtn(e)}>Save</button>
+            <button role='saveForm' type="submit" className="btn btn-primary" onClick={(e) => handleSaveBtn(e)}>Save</button>
           </div>
         </form>
       </div>
@@ -130,8 +130,8 @@ function Home() {
         className="Modal"
         overlayClassName="Overlay"
       >
-        <div className="form-group mt-4 container-btn">
-          <h2 className="">Employée created!</h2>
+        <div className="form-group mt-4 container-btn" data-testid='modal'>
+          <h2 className="" >Employée created!</h2>
           <button className="btn btn-primary mt-4" onClick={closeModal}>Close</button>
         </div>
       </Modal>
