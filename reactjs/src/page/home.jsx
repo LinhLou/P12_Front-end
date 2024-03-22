@@ -118,8 +118,8 @@ function Home() {
               <Select options={departements} id="department" labelField="name" valueField="id" onChange={(departement) => setDepartement(departement)} />
             </div>
           </div>
-          <div className="form-group mt-4 container-btn">
-            <button role='saveForm' type="submit" className="btn btn-primary" onClick={(e) => handleSaveBtn(e)}>Save</button>
+          <div className="form-group mt-4 container-btn"> 
+            <button data-testid='saveForm' type="submit" className="btn btn-primary" onClick={(e) => handleSaveBtn(e)}>Save</button>
           </div>
         </form>
       </div>
