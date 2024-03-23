@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { DataTable } from 'react-data-table-ll';
+import { DataTable } from 'react-table-component-ll-oc';
 import store from '../Redux/store';
 const columns = [
   {
